@@ -9,6 +9,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        MyListinterface<Integer> list = new MylinkedList,Integer>();
+        list.add(2);
+        list.add(4);
+        list.add(6);
+
+        System.out.println();
+
+        System.out.println(list.size());
     }
 }

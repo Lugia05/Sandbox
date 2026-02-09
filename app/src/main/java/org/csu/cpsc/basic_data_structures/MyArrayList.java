@@ -28,11 +28,15 @@ public class MyArrayList<E> implements MyListInterface<E>{
         @Override
         public void add(int index, E element){
             //1. Resize array to have 1 additional position
-
+            data = Arrays.copyOf(data, data.length+1) ;
 
             //2. Shoft elements down until we reach index
+            for(int x = data.length-1; x > index; i--){
+                data[x] = data [x-1];
+            }
 
             //3. Insert element into index
+            data[index = element;]
 
             //Start data.length-1 ---> index
             //for (x = data.length-1 , x>=index+1, x--)
@@ -40,4 +44,14 @@ public class MyArrayList<E> implements MyListInterface<E>{
 
 
         }
+
+        @Override
+        public E get(int index){
+            return data[index];
+        }
+
+        @Overridepublic int size(){
+            return data.length;
+        }
+
 }
