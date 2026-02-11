@@ -9,6 +9,58 @@ public class MyLinkedList<E> implements MylistInterface<E>{
         }
 
         @Override
+        public E set(int index, E element){
+            if(index >= 0 && index < size()){
+                int position = 0;
+                Node<E> currentNode = head;
+
+                while(position < index){
+                    currentNode = currentNode.next;
+                    position ++;
+                }
+                currentNode.data = E element;
+                return currentNode.data;
+            } else {
+                throw IndexOutOfBoundsException(s: "Unable to get");
+            }
+
+        }
+
+        @Override
+        public void add(int index, E element){
+            if(index >= 0 && index <= size()){
+                int position = 0;
+                Node<E> currentNode = head;
+                //checks if the index is not at 0 before starting
+                if (index = 0){
+                //checks if the index is 0
+                    
+                } else if (index = size()){
+                    //checks if the index is at the end
+                    while(position != index){
+                        currentNode = currentNode.next;
+                        position ++;
+                    }
+                    add(element);
+
+                } else{
+                    //default to this if the index is not 0 nor at the end
+                    while(position < index){
+                        currentNode = currentNode.next;
+                        position ++;
+                    }
+                }
+                //add here
+
+            } else {
+                throw IndexOutOfBoundsException(s: "Unable to get");
+            }
+        }
+
+
+        //below is stuff before the assignment
+
+        @Override
         public boolean add(E element){
             Node<E> newNode = new Node<E>(element);
 
@@ -38,7 +90,7 @@ public class MyLinkedList<E> implements MylistInterface<E>{
                 }
             }
             //check placement
-            return false;
+            throw IndexOutOfBoundsException(s: "Unable to get");
         }
 
         @Override
@@ -103,3 +155,20 @@ public class MyLinkedList<E> implements MylistInterface<E>{
 
     }
 }
+
+/* public void traverse(){
+    //start at head
+    Node current = head;
+
+    //Loop until end
+    while (current != null){
+        System.out.print(*current.data=())
+    }
+}
+
+Step 1 current = head
+Step 2
+
+last note points to null
+transversal uses a loop.
+ */
