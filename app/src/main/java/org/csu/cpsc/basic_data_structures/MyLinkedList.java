@@ -1,3 +1,113 @@
+package org.csu.cpsc.basic_data_structures;
+
+public class MyLinkedList<E> implements MyListInterface<E> {
+    private Node<E> head;
+
+    public MyLinkedList(){
+        this.head = null;
+    }
+
+    @Override
+    public boolean add(E element){
+        Node<E> newNode = new Node<E>(element);
+
+        if(head == null){
+            this.head = newNode;
+        } else {
+            Node<E> currentNode = head;
+            while(currentNode.next != null){
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean contains(Object o){
+        if(head != null) {
+            Node<E> currentNode = this.head;
+
+            while(currentNode.next != null){
+                if(currentNode.data.equals(o)){
+                    return true;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+        } 
+
+        return false;
+    }
+
+    @Override
+    public E get(int index){
+        if(index >= 0 && index < size()){
+            int position = 0;
+            Node<E> currentNode = head;
+
+            while(position < index){
+                currentNode = currentNode.next;
+                position++;
+            }
+
+            return currentNode.data;
+        } else {
+            throw new IndexOutOfBoundsException("Unable to Get");
+        }
+
+    }
+
+    @Override
+    public int indexOf(Object o){
+        int defaultIndex = -1;
+
+        if(head != null){
+            int index = 0;
+
+            Node<E> currentNode = head;
+            while(currentNode != null){
+                if(currentNode.data.equals(o)){
+                    return index;
+                } else {
+                    index++;
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return defaultIndex;
+    }
+
+    @Override
+    public int size(){
+        Node<E> currentNode = head;
+        int size = 0;
+
+        while(currentNode != null){
+            size += 1;
+            currentNode = currentNode.next;
+        }
+        return size;
+    }
+
+
+
+    private class Node<E>{
+        E data;
+        Node<E> next;
+
+        Node(E data){
+            this.data = data;
+            next = null;
+        }
+    }
+
+
+}
+
+
+/*
 package org.csu.cpsc.basic_data_structures
 
 public class MyLinkedList<E> implements MylistInterface<E>{
