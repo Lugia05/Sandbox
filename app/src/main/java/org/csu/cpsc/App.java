@@ -14,15 +14,18 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        MyListInterface<Integer> list = new MyArrayList<Integer>();
+        //MyListInterface<Integer> list = new MyArrayList<Integer>();
+        MyListInterface<Integer> list = new MyLinkedList<Integer>();
 
         System.out.println("******Test add function******");
         list.add(2);
         list.add(4);
         list.add(6);
+        list.add(8);
 
-        // System.out.println("******New ArrayList******");
-        // System.out.println(list.toString());
+
+        System.out.println("******New ArrayList******");
+        System.out.println(list.toString());
 
         System.out.println("******Test Contains function******");
         System.out.println(list.contains(1));
@@ -38,15 +41,23 @@ public class App {
         System.out.println(list.indexOf(6));
         System.out.println(list.indexOf(3));
 
-        // System.out.println("******Test Set Function******");
-        // list.set(2, 10);
-        // System.out.println(list.get(2));
+         System.out.println("******Test Set Function******");
+         list.set(1, 10);
+         System.out.println(list.get(1));
 
-        // System.out.println("******Test remove******");
-        // System.out.println("List before remove: " + list.toString());
-        // System.out.println(list.remove(0));
-        // System.out.println("List after remove: " + list.toString());
+        System.out.println("******Test remove******");
+        System.out.println("List before remove: " + list.toString());
+        //System.out.println(list.remove(2));
+        list.remove(0);
+        System.out.println("List after remove: " + list.toString());
+
+        System.out.println("******Test add******");
+        System.out.println("List before add: " + list.toString());
+        //System.out.println(list.remove(2));
+        list.add(2, 12);
+        System.out.println("List after add: " + list.toString());
     }
+
 }
 
 

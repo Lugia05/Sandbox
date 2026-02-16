@@ -1,11 +1,124 @@
 package org.csu.cpsc.basic_data_structures;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+
+//import java.util.IndexOutOfBoundsException;
+
 public class MyLinkedList<E> implements MyListInterface<E> {
     private Node<E> head;
 
     public MyLinkedList(){
         this.head = null;
     }
+
+        @Override
+        public E set(int index, E element){
+            if(index >= 0 && index < size()){
+                int position = 0;
+                Node<E> currentNode = head;
+
+                while(position < index){
+                    currentNode = currentNode.next;
+                    position ++;
+                }
+                currentNode.data = element;
+                return currentNode.data;
+            } else {
+                throw new IndexOutOfBoundsException("Unable to get");
+            }
+
+        }
+
+        @Override
+        public void add(int index, E element){
+
+            if(index >= 0 && index < size()){
+                int position = 0;
+                Node<E> currentNode = head;
+                //checks if the index is not at 0 before starting
+                if (index == 0){
+                    if ((head == null)){
+                        head = currentNode;
+                        currentNode.next = null;
+                    } else {
+                        Node<E> SaveIt = head;
+                        head = new Node<E>(element); 
+                        head.next = SaveIt;
+                    }
+
+                } else if (index == (size()-1)){
+                    //checks if the index is at the end
+                    while(position != index){
+                        currentNode = currentNode.next;
+                        position ++;
+                    }
+                    currentNode.next = new Node<E>(element);
+                    currentNode.next.next = null;
+
+                } else{
+                    //default to this if the indexs is not 0 nor at the end
+                    while(position < index){
+                        currentNode = currentNode.next;
+                        position ++;
+
+                    }
+                    Node<E> SaveIt = currentNode;
+                    currentNode = new Node<E>(element);
+                    currentNode.next = SaveIt;
+                }
+                //add here
+
+            } else {
+                throw new IndexOutOfBoundsException( "Unable to get");
+            }
+            
+        }
+
+        //remove()
+        @Override
+        public E remove(int index){
+            //E Re = this.get(index);
+            //E Neighbor = this.get(index-1);
+            //Neighbor
+            E re = this.get(index);
+
+            if(index >= 0 && index < size()){
+                int position = 0;
+                Node<E> currentNode = head;
+                //checks if the index is not at 0 before starting
+                if (index == 0){
+                    head = currentNode.next;
+                    currentNode.next = null;
+
+                } else if (index == (size()-1)){
+                    //checks if the index is at the end
+                    while(position != index){
+                        currentNode = currentNode.next;
+                        position ++;
+                    }
+                    currentNode.next = null;
+
+                } else{
+                    //default to this if the indexs is not 0 nor at the end
+                    while(position < index){
+                        currentNode = currentNode.next;
+                        position ++;
+
+                    }
+                    currentNode.next = currentNode.next.next;
+                    currentNode.next = null;
+                }
+                //add here
+
+            } else {
+                throw new IndexOutOfBoundsException( "Unable to get");
+            }
+            return re;
+            
+        }
+
+        //below is stuff before the assignment
 
     @Override
     public boolean add(E element){
@@ -101,6 +214,20 @@ public class MyLinkedList<E> implements MyListInterface<E> {
             this.data = data;
             next = null;
         }
+    }
+
+    @Override
+    public String toString(){
+        ArrayList<E> ArList = new ArrayList<E>();
+        Node<E> currentNode = head;
+        while(currentNode != null){
+            ArList.add(currentNode.data);
+
+         
+            currentNode = currentNode.next;
+        }
+       
+        return ArList.toString() ;
     }
 
 
