@@ -1,4 +1,4 @@
-package org.csu.cpsc
+package org.csu.cpsc.basic_data_structures ;
 
 import java.util.Arrays;
 
