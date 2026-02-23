@@ -56,14 +56,16 @@ public class App {
         //System.out.println(list.remove(2));
         list.add(2, 12);
         System.out.println("List after add: " + list.toString());
+
+        
+        MyQueueInterface<String> linkedList = new MyDoublyLinkedList<>();
+
+        linkedList.offer("One");
+        linkedList.offer("Two");
+
+        System.out.println(linkedList.peek());
+
     }
-
-    MyQueueInterface<String> linkedList = new MyDoublyLinkedList<>();
-
-    linkedList.offer("One");
-    linkedList.offer("Two");
-
-    System.out.println(linkedList.peek());
 
 }
 }
