@@ -10,7 +10,7 @@ public interface MyListInterface<E>{
      E set(int index, E element);
      int size();
      E remove(int index);
-     //boolean remove(Object o);
+     boolean remove(Object o);
 
 
     /*

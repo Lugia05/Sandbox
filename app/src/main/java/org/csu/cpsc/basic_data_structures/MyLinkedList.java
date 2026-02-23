@@ -229,10 +229,10 @@ public class MyLinkedList<E> implements MyListInterface<E> {
        
         return ArList.toString() ;
     }
-
-    //public boolean remove(Object o){
-
-    //}
+    //check this
+    public boolean remove(Object o){
+        return false;
+    }
     /*
     @Override
     public E set(int index, E element){
