@@ -50,6 +50,50 @@ private Node getMaxRecursiveNode (Node currentNode){
         return currentNode;
     }
 
+    public String inorderTraversal(){
+        return inorderTraversalRecursive(root);
+    }
+
+    //Preorder [R] ->
+            private String preorderTraversalRecursive(Node currentNode){
+            if (currentNode == null){
+                return "";
+            } else {
+                //root data -> currentNode.data
+                return " " + currentNode.data + preorderTraversalRecursive(currentNode.left) + preorderTraversalRecursive(currentNode.right);
+            }
+        }
+
+        private String inorderTraversalRecursive(Node currentNode){
+            if(currentNode == null){
+                return "";
+            } else {
+                return inorderTraversalRecursive(currentNode.left) + " " + currentNode.data + inorderTraversalRecursive(currentNode.right);
+            }
+        }
+
+        private Node deleteRecursive(int value, Node currentNode){
+            if(value < currentNode.data){
+                currentNode.left = deleteRecursive(value, currentNode.left);
+            } else if(value > currentNode.data){
+                currentNode.right = deleteRecursive(value, currentNode.right);
+            } else {
+                if(currentNode.left == null){
+                    return currentNode.right;
+                } else if(currentNode.right == null){
+                    return currentNode.left;
+                } else {
+                    Node successor = getMinRecursiveNode(currentNode.right); //Check
+                    currentNode.data = successor.data;
+                    currentNode.right = deleteRecursive(successor.data, currentNode.right);
+                }
+            }
+
+            return currentNode;
+        }
+
+
+
 }
 
 //traverse

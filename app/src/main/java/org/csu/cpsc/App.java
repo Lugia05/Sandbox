@@ -86,5 +86,9 @@ public class App {
         System.out.println(bst.getMin());
         System.out.println(bst.getMax());
 
+        
+
+
+
 }
 }
