@@ -1,6 +1,6 @@
 package org.csu.cpsc.hashing;
 
-public class MyHashSet {
+public class MyHashSet<E> {
     private Node<E>[] set;
 
     public MyHashSet(int capacity){
@@ -11,22 +11,49 @@ public class MyHashSet {
         this(10);
     }
 
-    public boolean add(String value){
+    public boolean add(E value){
         int index = find_position(value);
 
         if(set[index] == null){
             set[index] = new Node(value);
-        } else{
-            Node currentNode = set[index];
+        } else {
+            Node<E> currentNode = set[index];
             while(currentNode.next != null){
+                if(currentNode.data.equals(value)){
+                    return false;
+                }
                 currentNode = currentNode.next;
             }
             currentNode.next = new Node(value);
         }
+
         return true;
     }
+ public boolean delete(E value) {
+    int index = find_position(value);
 
-    public boolean contains(String value){
+    Node<E> currentNode = set[index];
+    Node<E> previousNode = null;
+
+    while (currentNode != null) {
+        if (currentNode.data.equals(value)) {
+            if (previousNode == null) {
+                // Checks if the index is at zero
+                set[index] = currentNode.next;
+            } else {
+                previousNode.next = currentNode.next;
+            }
+            return true;
+        }
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+    }
+
+    return false;
+}
+    
+
+    public boolean contains(E value){
         int index = find_position(value);
         if (set[index] != null){
             return false;
@@ -42,10 +69,17 @@ public class MyHashSet {
         }
     }
 
-    public boolean delete{
-
+    public void display() {
+        for (int i = 0; i < set.length; i++) {
+            System.out.println("Bucket " + i + ": " + set[i]);
+        }
     }
-    
+
+    private int find_position(E value){
+        return Math.abs(value.hashCode() % set.length);
+    }
+
+
     private class Node<E>{
         E data;
         Node<E> next;
@@ -54,9 +88,5 @@ public class MyHashSet {
             this.data = data;
             next = null;
         }
-    }
-
-    private int find_position(String value){
-        return Math.abs(value.hashCode() % set.length);
     }
 }

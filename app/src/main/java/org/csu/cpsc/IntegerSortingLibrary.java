@@ -62,7 +62,7 @@ public class IntegerSortingLibrary{
             leftTable = mergeSort(leftTable);
             rightTable = mergeSort(rightTable);
 
-            return mergeMethod(left)
+            return mergeMethod(leftTable, rightTable);
 
         }
 
@@ -95,13 +95,14 @@ public class IntegerSortingLibrary{
             leftTableIndex++;
         }
 
-        while(rightTableIndex < tightTable.length){
+        while(rightTableIndex < rightTable.length){
             array[arrayIndex] = rightTable[rightTableIndex];
             arrayIndex++;
             leftTableIndex++;
 
-            return array;
+            
         }
+        return array;
     }
 
 

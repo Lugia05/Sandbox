@@ -16,5 +16,7 @@ public class MyBinarySearch {
                 low = mid + 1;
             }
         }
+        //check for these questions
+        return high;
     }
 }
