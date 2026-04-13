@@ -51,6 +51,38 @@ public class MyHashSet<E> {
 
     return false;
 }
+/*
+    public boolean remove(Object o){
+        int index = indexOf(o);
+        if(index >= 0){
+            remove(index);
+            return true;
+        } else {
+          return false ;
+        }
+    }
+ */
+
+        public boolean remove(E value){
+            int index = find_position(value);
+            if(set[index] == null){
+                return false;
+            } else {
+                Node<E> currentNode = set[index];
+                Node<E> previousNode = null;
+
+                while(currentNode != null){
+                    if(currentNode.data == value){
+                        return true;
+                    } else{
+                        previousNode = currentNode;
+                        currentNode = currentNode.next;
+                    }
+                }
+
+                return true;
+            }
+        }
     
 
     public boolean contains(E value){
