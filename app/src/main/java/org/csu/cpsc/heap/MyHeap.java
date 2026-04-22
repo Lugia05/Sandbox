@@ -1,8 +1,19 @@
 package org.csu.cpsc.heap;
 
 public class MyHeap<E extends Comparable<E>> {
-    
-    private void insert(E item){
+    private E[] data;
+    private int endOfHeap;
+
+    public MyHeap(int initialCapacity){
+        data = (E[]) new Comparable[initialCapacity];
+        endOfHeap = -1;
+    }
+
+    public MyHeap(){
+        this(50);
+    }
+
+    public void insert(E item){
         endOfHeap++;
         data[endOfHeap] = item;
         verifyInsert(endOfHeap);
@@ -27,7 +38,9 @@ public class MyHeap<E extends Comparable<E>> {
             swap(0, endOfHeap);
             data[endOfHeap] = null;
             endOfHeap--;
+            return removedItem;
         }
+
     }
 
     private void verifyRemove(int parentIndex){
@@ -37,18 +50,21 @@ public class MyHeap<E extends Comparable<E>> {
         //Verify leftChild and rightChild are valid
         if(leftChildIndex <= endOfHeap && rightChildIndex <= endOfHeap){
             int smallestChildIndex = -1;
-            if(data[leftChildIndex].compareTo(data[rightChildIndex]) <=0){
+            if(data[leftChildIndex].compareTo(data[rightChildIndex]) <= 0){
                 smallestChildIndex = leftChildIndex;
             } else {
                 smallestChildIndex = rightChildIndex;
             }
 
-            if(data[parentIndex].compareTO(data[smallestChildIndex]) > 0){
-                swap(parentIndex, smallestChildIndex)
-
+            if(data[parentIndex].compareTo(data[smallestChildIndex]) > 0){
+                swap(parentIndex, smallestChildIndex);
+                verifyRemove(smallestChildIndex);
             }
-        } else if(leftChildIndex <= endOfHeap){ //left child is valid
 
+        } else if(leftChildIndex <= endOfHeap){ //left child is valid
+            if(data[parentIndex].compareTo(data[leftChildIndex]) > 0){
+                swap(parentIndex, leftChildIndex);
+            }
         }
     }
 
@@ -57,10 +73,16 @@ public class MyHeap<E extends Comparable<E>> {
     }
 
     private int findLeftChild(int parent){
-        return (parent * w) + 1;
+        return (parent * 2) + 1;
     }
 
     private int findRightChild(int parent){
-        return (parent *2) + 2;
+        return (parent * 2) + 2;
+    }
+
+    private void swap(int index1, int index2){
+        E temp = data[index1];
+        data[index1] = data[index2];
+        data[index2] = temp;
     }
 }

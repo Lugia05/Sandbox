@@ -1,7 +1,7 @@
 package org.csu.cpsc.hashing;
 
 public class MyHashMap {
-
+/* 
     public MyHashMap(){
         map = new MyHashmap(){
 
@@ -40,7 +40,7 @@ public class MyHashMap {
             Entry<K, V> entry = new Entry<>(key, value);
 
             if(map.contains(findEntry)){
-                Entry entry = map.get(findEntry)
+                Entry entry = map.get(findEntry);
             }
         }
 
@@ -49,4 +49,5 @@ public class MyHashMap {
 
         }
     }
+        */
 }
