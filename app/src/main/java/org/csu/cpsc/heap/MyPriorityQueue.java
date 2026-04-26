@@ -1,6 +1,9 @@
 package org.csu.cpsc.heap;
 
-public class MyPriorityQueue<E extends Comparable<E>> implements MyQueueInterface<E> {
+import org.csu.cpsc.basic_data_structures.MyQueueInterface;
+
+//public class MyPriorityQueue<E extends Comparable<E>> implements MyQueueInterface<E> {
+    /**
     MyHeap<E> priorityQueue;
 
     @Overide
@@ -29,4 +32,5 @@ public class MyPriorityQueue<E extends Comparable<E>> implements MyQueueInterfac
         }
         return null;
     }
-}
+         */
+
